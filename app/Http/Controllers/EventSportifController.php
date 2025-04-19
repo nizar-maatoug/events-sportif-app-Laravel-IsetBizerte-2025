@@ -3,16 +3,29 @@
 namespace App\Http\Controllers;
 
 use App\Models\EventSportif;
+use App\Services\Interfaces\EventSportifServiceInterface;
 use Illuminate\Http\Request;
 
 class EventSportifController extends Controller
 {
+
+    public function __construct(public EventSportifServiceInterface $eventSportifService)
+    {
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $eventSportifs=$this->eventSportifService->getAllEvents();
+        $data=[
+            'title' => $description="Mes évènements sportifs",
+            'description' => $description,
+            'eventSportifs' => $eventSportifs,
+
+            'heading' => $description
+        ];
+        return view('events.mes-events',$data);
     }
 
     /**
