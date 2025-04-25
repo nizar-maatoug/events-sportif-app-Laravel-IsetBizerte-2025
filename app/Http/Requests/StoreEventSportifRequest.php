@@ -22,9 +22,10 @@ class StoreEventSportifRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nom' =>['required', 'max:100'],
+            'name' =>['required', 'max:100'],
             'description' => ['required'],
-            'lieu'  => ['required','max:100'],
+            'location'  => ['required','max:100'],
+            //complete the rules
         ];
     }
 }

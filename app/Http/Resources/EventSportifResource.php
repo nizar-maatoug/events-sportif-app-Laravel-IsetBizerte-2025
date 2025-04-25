@@ -16,9 +16,9 @@ class EventSportifResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'nom' => $this->nom,
+            'name' => $this->name,
             'description' => $this->description,
-            'lieu' => $this->lieu,
+            'location' => $this->location,
         ];
     }
 }

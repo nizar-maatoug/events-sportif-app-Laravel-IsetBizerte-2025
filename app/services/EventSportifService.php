@@ -5,6 +5,7 @@ use App\Models\EventSportif;
 use App\Services\Interfaces\EventSportifServiceInterface;
 use Illuminate\Contracts\Pagination\Paginator;
 
+
 class EventSportifService implements EventSportifServiceInterface
 {
     public function getAllEvents($perPage = 10):Paginator

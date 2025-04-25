@@ -19,13 +19,16 @@ class EventSportifController extends Controller
     {
         $eventSportifs=$this->eventSportifService->getAllEvents();
         $data=[
-            'title' => $description="Mes évènements sportifs",
+            //Meta tags: customize for each page -> SEO
+            'title' => $description="My events sportifs",
             'description' => $description,
+            'heading' => $description,
+            //payload: model
             'eventSportifs' => $eventSportifs,
 
-            'heading' => $description
+
         ];
-        return view('events.mes-events',$data);
+        return view('events.mes-events',$data);//solliciter blades
     }
 
     /**

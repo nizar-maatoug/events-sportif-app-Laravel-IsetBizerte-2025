@@ -27,7 +27,7 @@ class EventSportifController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //Validation des données
     }
 
     /**
@@ -43,7 +43,8 @@ class EventSportifController extends Controller
      */
     public function update(Request $request, EventSportif $eventSportif)
     {
-        //
+        //validation des données
+        //update
     }
 
     /**
