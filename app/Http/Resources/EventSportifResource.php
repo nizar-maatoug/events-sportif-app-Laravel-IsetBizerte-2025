@@ -17,8 +17,12 @@ class EventSportifResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'sport' => $this->sport,
             'description' => $this->description,
             'location' => $this->location,
+            'start_date' => $this->start_date->format('Y-m-d'),
+            'end_date' => $this->end_date->format('Y-m-d'),
+            'status' => $this->status,
         ];
     }
 }

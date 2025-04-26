@@ -14,9 +14,14 @@ class EventSportif extends Model
 
     protected $fillable = [
         'name',
+        'slug',
+        'sport',
         'description',
-        'date',
         'location',
+        'start_date',
+        'end_date',
+        'status',
+        'user_id'
     ];
 
     public function organizer()
@@ -43,4 +48,10 @@ class EventSportif extends Model
             $event->slug = Str::slug($event->name);
         });
     }
+
+
+    protected $casts = [
+        'start_date' => 'datetime',
+        'end_date' => 'datetime',
+    ];
 }

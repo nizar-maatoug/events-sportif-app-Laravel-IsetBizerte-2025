@@ -27,7 +27,11 @@ class EventSportifController extends Controller
      */
     public function store(Request $request)
     {
-        //Validation des données
+        $eventSportif = $this->eventSportifService->createEvent($request->all());
+        return response()->json([
+            'message' => 'Event created successfully',
+            'event' => new EventSportifResource($eventSportif)
+        ], 201);
     }
 
     /**
@@ -35,7 +39,15 @@ class EventSportifController extends Controller
      */
     public function show(EventSportif $eventSportif)
     {
-        //
+        $eventSportif = $this->eventSportifService->getEventById($eventSportif->id);
+        if (!$eventSportif) {
+            return response()->json([
+                'message' => 'Event not found'
+            ], 404);
+        }
+        return response()->json([
+            'event' => new EventSportifResource($eventSportif)
+        ], 200);
     }
 
     /**
@@ -43,8 +55,11 @@ class EventSportifController extends Controller
      */
     public function update(Request $request, EventSportif $eventSportif)
     {
-        //validation des données
-        //update
+        $eventSportif = $this->eventSportifService->updateEvent($eventSportif->id, $request->all());
+        return response()->json([
+            'message' => 'Event updated successfully',
+            'event' => new EventSportifResource($eventSportif)
+        ], 200);
     }
 
     /**
@@ -52,6 +67,9 @@ class EventSportifController extends Controller
      */
     public function destroy(EventSportif $eventSportif)
     {
-        //
+        $this->eventSportifService->deleteEvent($eventSportif->id);
+        return response()->json([
+            'message' => 'Event deleted successfully'
+        ], 200);
     }
 }
