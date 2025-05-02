@@ -53,6 +53,8 @@ class EventSportifService implements EventSportifServiceInterface
 
     private function validateEventData(array $data): array
     {
+        // Add the user_id to the data array
+        // Assuming you have a method to get the authenticated user's ID
         $data['user_id'] = $this->getAuthUSerId();
         // Here you can implement your validation logic
         // For example, you can use Laravel's Validator facade
@@ -77,7 +79,7 @@ class EventSportifService implements EventSportifServiceInterface
 
     private function getAuthUSerId(): int
     {
-        //fake user for now
+        //fake user for now (factories)
         return 1;
         //return auth()->id();
     }
