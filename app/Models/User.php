@@ -22,6 +22,25 @@ class User extends Authenticatable
         'email',
         'password',
     ];
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
+
+    public function isAdmin()
+    {
+        return $this->role->name === 'admin';
+    }
+
+    public function isOrganizer()
+    {
+        return $this->role->name === 'organizer';
+    }
+
+    public function isUser()
+    {
+        return $this->role->name === 'user';
+    }
 
     public function eventSportifs()
     {
