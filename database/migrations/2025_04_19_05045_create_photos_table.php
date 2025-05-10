@@ -23,6 +23,7 @@ return new class extends Migration
             $table->integer('height')->nullable();
             $table->unsignedBigInteger('photoable_id')->nullable();
             $table->string('photoable_type')->nullable();
+            $table->string('field')->nullable();//Logo, poster, etc
 
             $table->timestamps();
         });

@@ -49,4 +49,11 @@ class PhotoFactory extends Factory
         return $this;
 
     }
+
+    public function withField($field){
+        $this->state([
+            'field' => $field
+        ]);
+        return $this;
+    }
 }

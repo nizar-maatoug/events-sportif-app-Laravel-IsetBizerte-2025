@@ -31,12 +31,12 @@ class EventSportif extends Model
 
     public function logo(): MorphOne
     {
-        return $this->morphOne(Photo::class,'photoable');
+        return $this->morphOne(Photo::class,'photoable')->where('field', 'logo');
     }
 
     public function poster(): MorphOne
     {
-        return $this->morphOne(Photo::class,'photoable');
+        return $this->morphOne(Photo::class,'photoable')->where('field', 'poster');
     }
 
 
