@@ -14,11 +14,16 @@ Route::prefix('v1')->group(function () {
     Route::post('/login', [AuthController::class, 'login']);
 
     // Public routes
-    Route::get('/events', [EventSportifController::class, 'index'])
-    ->name('events.index');
+    Route::get('/eventSportifs', [EventSportifController::class, 'index'])
+    ->name('eventSportifs.index');
     // Route to specific event
-    Route::get('/events/{eventSportif}', [EventSportifController::class, 'show'])
-    ->name('events.show');
+    Route::get('/eventSportifs/{eventSportif}', [EventSportifController::class, 'show'])
+    ->name('eventSportifs.show');
+
+    //for only testing purpose
+    // Route to create a new event
+    // This route is for testing purposes only and should not be used in production.
+    Route::post('/eventSportifs', [EventSportifController::class, 'store']);
 
     // Protected routes
     // Authenticated user routes
@@ -33,13 +38,13 @@ Route::prefix('v1')->group(function () {
         Route::post('/logout', [AuthController::class, 'logout']);
 
         // add event
-        Route::post('/events', [EventSportifController::class, 'store'])
-        ->middleware(CheckRole::class,':admin,organizer')->name('events.store');
+        //Route::post('/eventSportifs', [EventSportifController::class, 'store'])
+        //->middleware(CheckRole::class,':admin,organizer')->name('eventSportifs.store');
 
-        Route::put('/events/{eventSportif}', [EventSportifController::class, 'update'])
-        ->middleware('can:update,eventSportif')->name('events.update');
+        Route::put('/eventSportifs/{eventSportif}', [EventSportifController::class, 'update'])
+        ->middleware('can:update,eventSportif')->name('eventSportifs.update');
 
-        Route::delete('/events/{eventSportif}', [EventSportifController::class, 'destroy'])
+        Route::delete('/eventSportifs/{eventSportif}', [EventSportifController::class, 'destroy'])
         ->middleware('can:delete,eventSportif')->name('events.destroy');
 
         // Organizer-only routes

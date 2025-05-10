@@ -12,5 +12,4 @@ interface PhotoServiceInterface
 
     public function deletePhoto($photoId): bool;
 
-
 }

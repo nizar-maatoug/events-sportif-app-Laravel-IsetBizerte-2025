@@ -15,6 +15,8 @@ class EventSportifService implements EventSportifServiceInterface
 {
 
 
+    //injecting the PhotoService
+    //to handle the photos
     public function __construct(private PhotoService $photoService)
     {
         // Constructor code if needed
@@ -32,20 +34,22 @@ class EventSportifService implements EventSportifServiceInterface
 
     public function createEvent(array $data): EventSportif
     {
+
         // Validate the data
         $data = $this->validateEventData($data);
+        // begin transaction
         DB::beginTransaction();
         // Create the event
         $eventSportif= EventSportif::create($data);
         // Handle the photos
         if (isset($data['poster'])) {
             $poster = $this->photoService->uploadPhoto($data['poster'],get_class($eventSportif),$eventSportif->id, 'poster', 'photos/events/posters');
-            $eventSportif->poster()->associate($poster);
+           // $eventSportif->poster()->associate($poster);
         }
         if (isset($data['logo'])) {
             $logo = $this->photoService->uploadPhoto($data['logo'],get_class($eventSportif),$eventSportif->id, 'logo', 'photos/events/logos');
             // Associate the logo with the event
-            $eventSportif->logo()->associate($logo);
+            //$eventSportif->logo()->associate($logo);
         }
         // Save the event with the associated photos
         $eventSportif->save();
@@ -68,12 +72,12 @@ class EventSportifService implements EventSportifServiceInterface
             // Handle the photos
             if (isset($data['poster'])) {
                 $poster = $this->photoService->updatePhoto($data['poster'], $event->poster->id, 'photos/events/posters');
-                $event->poster()->associate($poster);
+                //$event->poster()->associate($poster);
             }
             if (isset($data['logo'])) {
                 $logo = $this->photoService->updatePhoto($data['logo'], $event->logo->id, 'photos/events/logos');
                 // Associate the logo with the event
-                $event->logo()->associate($logo);
+                //$event->logo()->associate($logo);
             }
             DB::commit();
             return $event;
