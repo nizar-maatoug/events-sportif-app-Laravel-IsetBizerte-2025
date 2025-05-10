@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             RolesTableSeeder::class,
             // Add other seeders...
         ]);
+        
         User::create([
             'name' => 'Admin',
             'email' => 'admin@events.com',

@@ -8,7 +8,7 @@ use App\Http\Middleware\CheckRole;
 
 Route::prefix('v1')->group(function () {
     // EventSportif API Resource Routes
-    Route::apiResource('eventSportifs', EventSportifController::class);
+    //Route::apiResource('eventSportifs', EventSportifController::class);
 
     Route::post('/register', [AuthController::class, 'register']);
     Route::post('/login', [AuthController::class, 'login']);
@@ -16,7 +16,7 @@ Route::prefix('v1')->group(function () {
     // Public routes
     Route::get('/events', [EventSportifController::class, 'index'])
     ->name('events.index');
-    // Route to get all events
+    // Route to specific event
     Route::get('/events/{eventSportif}', [EventSportifController::class, 'show'])
     ->name('events.show');
 
@@ -32,7 +32,7 @@ Route::prefix('v1')->group(function () {
     Route::middleware('auth:sanctum')->group(function(){
         Route::post('/logout', [AuthController::class, 'logout']);
 
-        // EventSportif API Resource Routes
+        // add event
         Route::post('/events', [EventSportifController::class, 'store'])
         ->middleware(CheckRole::class,':admin,organizer')->name('events.store');
 
