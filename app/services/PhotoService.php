@@ -8,11 +8,12 @@ use Illuminate\Http\UploadedFile;
 
 class PhotoService implements PhotoServiceInterface
 {
-    public function uploadPhoto($file, $photoableType, $field, $pathToSave): Photo
+    public function uploadPhoto($file, $photoableType,$photoableId, $field, $pathToSave): Photo
     {
         $photo = new Photo();
-        $photo->uuid = Str::uuid();
+        $photo->name = Str::uuid() + '.'.$file->getClientOriginalExtension();
         $photo->photoable_type = $photoableType;
+        $photo->photoable_id = $photoableId;
         $photo->field = $field;
 
         if ($file instanceof UploadedFile) {
@@ -23,7 +24,6 @@ class PhotoService implements PhotoServiceInterface
             $photo->height = $file->getHeight();
             $photo->thumbnail_path = $photo->path;
             $photo->thumbnail_url = config('app.url').'/storage/'.Str::after($photo->path, 'public/');
-            $photo->name = $file->getClientOriginalName();
         } else {
             throw new \InvalidArgumentException('The file must be an instance of UploadedFile.');
         }
