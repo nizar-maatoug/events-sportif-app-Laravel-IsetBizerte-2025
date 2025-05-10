@@ -10,7 +10,7 @@ class Photo extends Model
     /** @use HasFactory<\Database\Factories\PhotoFactory> */
     use HasFactory;
 
-    protected $fillable = ['path', 'description', 'size', 'width', 'height','user_id' ];
+    protected $fillable = ['path', 'description', 'size', 'width', 'height','user_id', 'field' ];
 
     public function photoable()
     {
