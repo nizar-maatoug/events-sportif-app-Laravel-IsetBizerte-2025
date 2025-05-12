@@ -23,7 +23,7 @@ Route::prefix('v1')->group(function () {
     //for only testing purpose
     // Route to create a new event
     // This route is for testing purposes only and should not be used in production.
-    Route::post('/eventSportifs', [EventSportifController::class, 'store']);
+    //Route::post('/eventSportifs', [EventSportifController::class, 'store']);
 
     // Protected routes
     // Authenticated user routes
@@ -38,8 +38,8 @@ Route::prefix('v1')->group(function () {
         Route::post('/logout', [AuthController::class, 'logout']);
 
         // add event
-        //Route::post('/eventSportifs', [EventSportifController::class, 'store'])
-        //->middleware(CheckRole::class,':admin,organizer')->name('eventSportifs.store');
+        Route::post('/eventSportifs', [EventSportifController::class, 'store'])
+        ->middleware(CheckRole::class.':admin,organizer')->name('eventSportifs.store');
 
         Route::put('/eventSportifs/{eventSportif}', [EventSportifController::class, 'update'])
         ->middleware('can:update,eventSportif')->name('eventSportifs.update');
@@ -48,13 +48,13 @@ Route::prefix('v1')->group(function () {
         ->middleware('can:delete,eventSportif')->name('events.destroy');
 
         // Organizer-only routes
-        Route::middleware(CheckRole::class,':organizer')->group(function () {
+        Route::middleware(CheckRole::class.':organizer')->group(function () {
             Route::get('/organizer/events', [EventSportifController::class, 'organizerEvents'])
             ->name('organizer.events.index');
         });
 
         // Admin-only routes
-        Route::middleware(CheckRole::class,':admin')->group(function () {
+        Route::middleware(CheckRole::class.':admin')->group(function () {
             Route::get('/admin/stats', [EventSportifController::class, 'adminStats'])
             ->name('admin.events.stats');
         });
