@@ -25,8 +25,6 @@ class EventSportifController extends Controller
             'heading' => $description,
             //payload: model
             'eventSportifs' => $eventSportifs,
-
-
         ];
         return view('events.mes-events',$data);//solliciter blades
     }

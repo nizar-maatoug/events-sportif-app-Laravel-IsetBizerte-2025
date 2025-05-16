@@ -17,3 +17,7 @@ Route::get('/', function () {
 //Route::delete('/eventSportifs/{eventSportif}', [EventSportifController::class, 'destroy'])->name('eventSportifs.destroy');
 // Alternative way to define resource routes
 Route::resource('eventSportifs', EventSportifController::class);
+
+Route::get('/home', function () {
+    return view('home');
+})->name('home');
