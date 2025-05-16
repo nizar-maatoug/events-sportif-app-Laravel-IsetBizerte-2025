@@ -17,6 +17,7 @@
 
         <button type="button" class="btn btn-secondary">Secondary</button>
 
+        <div class="alert alert-success mt-3">Bootstrap is working!</div>
     </div>
 
 </body>
