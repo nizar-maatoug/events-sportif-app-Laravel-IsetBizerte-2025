@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EventSportifController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
@@ -22,3 +23,14 @@ Route::resource('eventSportifs', EventSportifController::class);
 
 
 Route::get('', HomeController::class)->name('home');
+
+// Authentication Routes
+Route::controller(AuthController::class)->group(function () {
+    Route::get('/register', 'showRegisterForm')->name('register');
+    Route::post('/register', 'register');
+    Route::get('/login', 'showLoginForm')->name('login');
+    Route::post('/login', 'login');
+    Route::post('/logout', 'logout')->name('logout');
+});
+
+
