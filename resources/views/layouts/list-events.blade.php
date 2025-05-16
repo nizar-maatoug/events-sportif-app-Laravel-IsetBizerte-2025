@@ -15,5 +15,9 @@
 
         @endforeach
     </div>
-    {{ $eventSportifs->links() }}
+    <div class="d-flex justify-content-center mt-3">
+
+        {{ $eventSportifs->links() }}
+    </div>
+
 </div>

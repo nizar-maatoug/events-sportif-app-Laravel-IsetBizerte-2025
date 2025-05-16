@@ -22,7 +22,7 @@ class EventSportifService implements EventSportifServiceInterface
         // Constructor code if needed
     }
 
-    public function getAllEvents($perPage = 10):Paginator
+    public function getAllEvents($perPage = 3):Paginator
     {
         return EventSportif::with(['poster','logo'])->paginate($perPage);
     }
