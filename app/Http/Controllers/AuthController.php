@@ -66,7 +66,7 @@ class AuthController extends Controller
         }
 
         // If login fails, redirect back with an error message
-        return redirect()->back()->withErrors(['email' => 'Invalid credentials.'])->withInput();
+        return redirect()->back()->withErrors(['email' => 'Invalid credentials.'])->onlyInput('email');
     }
     // Handle Logout
     public function logout()
