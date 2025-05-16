@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\EventSportifController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -18,6 +19,6 @@ Route::get('/', function () {
 // Alternative way to define resource routes
 Route::resource('eventSportifs', EventSportifController::class);
 
-Route::get('/home', function () {
-    return view('home');
-})->name('home');
+
+
+Route::get('', HomeController::class)->name('home');

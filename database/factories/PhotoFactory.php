@@ -14,6 +14,7 @@ class PhotoFactory extends Factory
 
     public $photoPath = '';
     public $defautPath = '';
+    public $field = '';
 
     public $photoName = '';
     /**
@@ -30,6 +31,7 @@ class PhotoFactory extends Factory
             'url' => $url = config('app.url').'/storage/'.Str::after($path, 'public/'),
             'thumbnail_path' => $path,
             'thumbnail_url' => $url,
+            'field' => $this->field,
             'size' => 1024 * 1024 * random_int(1, 3),
             'width' => 1024,
             'height' => 768,
@@ -51,9 +53,7 @@ class PhotoFactory extends Factory
     }
 
     public function withField($field){
-        $this->state([
-            'field' => $field
-        ]);
+       $this->field = $field;
         return $this;
     }
 }
