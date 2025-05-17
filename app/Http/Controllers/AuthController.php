@@ -59,9 +59,9 @@ class AuthController extends Controller
             // Redirect to the dashboard
             // Role-based redirection
             return match(Auth::user()->role->name) {
-                'admin' => redirect()->intended('/admin/dashboard'),
-                'organizer' => redirect()->intended('/organizer/dashboard'),
-                default => redirect()->intended('home'),
+                'admin' => redirect()->intended(route('admin.dashboard')),
+                'organizer' => redirect()->intended(route('organizer.dashboard')),
+                default => redirect()->intended(route('home')),
             };
         }
 
