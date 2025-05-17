@@ -50,9 +50,11 @@ class DatabaseSeeder extends Seeder
 
         $users = User::factory(3)->create();
 
+        $users = User::where('role_id', 2)->get();
+
 
         $users->each(function($user){
-            $user->role_id =random_int(1, 3);
+            //$user->role_id =random_int(1, 3);
             $user->save();
             $user->eventSportifs()->saveMany(EventSportif::factory(random_int(1,3))
                 ->create([
