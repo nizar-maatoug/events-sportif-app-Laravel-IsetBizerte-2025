@@ -10,6 +10,8 @@ interface EventSportifServiceInterface
 {
     public function getAllEvents(int $perPage = 10): Paginator;
 
+    public function getEventsByOrganizerId(int $userId, $perPage = 3): Paginator;
+
     public function getEventById(int $id): ?EventSportif;
 
     public function createEvent(array $data): EventSportif;

@@ -5,6 +5,7 @@ use App\Models\EventSportif;
 use App\Models\Photo;
 use App\Services\Interfaces\EventSportifServiceInterface;
 use Illuminate\Contracts\Pagination\Paginator;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
@@ -25,6 +26,11 @@ class EventSportifService implements EventSportifServiceInterface
     public function getAllEvents($perPage = 3):Paginator
     {
         return EventSportif::with(['poster','logo'])->paginate($perPage);
+    }
+
+    public function getEventsByOrganizerId(int $userId, $perPage = 3): Paginator
+    {
+        return EventSportif::where('user_id', $userId)->with(['poster','logo'])->paginate($perPage);
     }
 
     public function getEventById(int $id): ?EventSportif
@@ -51,6 +57,7 @@ class EventSportifService implements EventSportifServiceInterface
             // Associate the logo with the event
             //$eventSportif->logo()->associate($logo);
         }
+
         // Save the event with the associated photos
         $eventSportif->save();
 
@@ -133,8 +140,8 @@ class EventSportifService implements EventSportifServiceInterface
     private function getAuthUSerId(): int
     {
         //fake user for now (factories)
-        return 1;
-        //return auth()->id();
+       // return 1;
+        return Auth::user()->id;
     }
 
 
