@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Middleware\CheckRole;
+use App\Models\EventSportif;
 use App\Services\Interfaces\EventSportifServiceInterface;
 
 
@@ -28,5 +29,43 @@ class OrganizerController extends Controller
         ];
         return view('organizer.dashboard',$data);
     }
+
+     // Show create form
+    public function create()
+    {
+        return view('organizer.events.create');
+    }
+
+    public function store($request)
+    {
+        // Create the event
+        $eventSportif = $this->eventSportifService->createEvent($request->all());
+
+        // Redirect to the event page
+        return redirect()->route('organizer.dashboard')->with('success', 'Event created successfully');
+    }
+
+   // Show edit form
+    public function edit(EventSportif $event)
+    {
+        $data=[
+            'title' => $description = "Edit event sportif",
+            'description' => $description,
+            'heading' => $description,
+            'event' => $event,
+        ];
+        return view('organizer.events.create', $data);
+    }
+
+    public function update($request, EventSportif $event)
+    {
+        // Update the event
+        $this->eventSportifService->updateEvent($event->id,$request->all());
+
+        // Redirect to the event page
+        return redirect()->route('organizer.dashboard')->with('success', 'Event updated successfully');
+    }
+
+
 
 }

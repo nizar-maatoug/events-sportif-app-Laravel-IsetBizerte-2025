@@ -43,6 +43,12 @@ Route::middleware(['auth', CheckRole::class.':admin'])->prefix('admin')->group(f
 
 Route::middleware(['auth', CheckRole::class.':organizer'])->prefix('organizer')->group(function () {
     Route::get('/dashboard', [OrganizerController::class, 'dashboard'])->name('organizer.dashboard');
+    Route::get('/events/create', [OrganizerController::class, 'create'])->name('organizer.events.create');
+    Route::post('/events', [OrganizerController::class, 'store'])->name('organizer.events.store');
+    Route::get('/events/{eventSportif}/edit', [OrganizerController::class, 'edit'])->name('organizer.events.edit');
+    Route::put('/events/{eventSportif}', [OrganizerController::class, 'update'])->name('organizer.events.update');
+    Route::delete('/events/{eventSportif}', [OrganizerController::class, 'destroy'])->name('organizer.events.destroy');
+    Route::get('/events/{eventSportif}', [OrganizerController::class, 'show'])->name('organizer.events.show');
 });
 
 

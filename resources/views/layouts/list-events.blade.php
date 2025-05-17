@@ -10,6 +10,9 @@
                 </div>
                 <div class="card-footer">
                     <a href="{{route('eventSportifs.show',[$eventSportif])}}" class="btn btn-primary">Détails</a>
+                    @if(auth()->user()->isOrganizer())
+                        <a href="{{route('organizer.events.edit',[$eventSportif])}}" class="btn btn-warning">Modifier</a>
+                    @endif
                 </div>
             </div>
 

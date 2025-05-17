@@ -24,6 +24,15 @@ class EventSportif extends Model
         'user_id'
     ];
 
+    const SPORTS = [
+        'TaeKwondo',
+        'Judo',
+        'Karate',
+        'Boxe',
+        'KungFu',
+        'Aikido'
+    ];
+
     public function organizer()
     {
         return $this->belongsTo(User::class);
